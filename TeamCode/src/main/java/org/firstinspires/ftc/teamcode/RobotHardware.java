@@ -6,6 +6,9 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+import org.firstinspires.ftc.teamcode.utils.GoBildaPinpointDriver;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,6 +24,9 @@ public class RobotHardware {
     public final  List<DcMotorEx> flyWheels;
 
     public Servo Gate, kick_L, kick_R;
+
+    // Odometry
+    public GoBildaPinpointDriver odo;
 
     public RobotHardware(HardwareMap hwMapX, ElapsedTime runtime) {
         this.hwMap = hwMapX;
@@ -47,6 +53,7 @@ public class RobotHardware {
         kick_L = hwMap.get(Servo.class, "kick_L");
         kick_R = hwMap.get(Servo.class, "kick_R");
 
+        // Motor Directions
         leftFrontDrive.setDirection(DcMotorEx.Direction.REVERSE);
         leftBackDrive.setDirection(DcMotorEx.Direction.REVERSE);
         rightFrontDrive.setDirection(DcMotorEx.Direction.FORWARD);
@@ -54,6 +61,15 @@ public class RobotHardware {
 
         Flywheel_L.setDirection(DcMotorSimple.Direction.FORWARD);
         Flywheel_L.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        // Odometry
+        // Odometry Computer
+        odo = hwMap.get(GoBildaPinpointDriver.class, "POC");
+        odo.setOffsets(0, 0, DistanceUnit.MM); // Not Calibrated
+        odo.setEncoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD);
+
+        odo.setEncoderDirections(GoBildaPinpointDriver.EncoderDirection.FORWARD, GoBildaPinpointDriver.EncoderDirection.FORWARD); // Direction
+        odo.resetPosAndIMU();
     }
 
 }
