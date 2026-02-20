@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.opmodes.teleop;
 
+import static org.firstinspires.ftc.teamcode.tuning.roboConstants.DriveConstants.DriveSpeed;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -16,7 +18,6 @@ public class UniversalTeleOp extends OpMode{
 
     private ElapsedTime opmodeTimer = new ElapsedTime();
 
-    private double SPEED_MULTIPLIER = 1.00;
 
     @Override
     public void init(){
@@ -36,7 +37,7 @@ public class UniversalTeleOp extends OpMode{
         double rx = gamepad1.right_stick_x;
 
         double[] powers = drivetrain.calculateMotorPowers(y, x, rx);
-        drivetrain.setDriveMotorPowers(bot.driveMotors, powers, SPEED_MULTIPLIER);
+        drivetrain.setDriveMotorPowers(bot.driveMotors, powers, DriveSpeed);
 
     }
 }

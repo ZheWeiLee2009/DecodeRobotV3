@@ -1,5 +1,10 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
+import static org.firstinspires.ftc.teamcode.tuning.roboConstants.DriveConstants.BL_Offset;
+import static org.firstinspires.ftc.teamcode.tuning.roboConstants.DriveConstants.BR_Offset;
+import static org.firstinspires.ftc.teamcode.tuning.roboConstants.DriveConstants.FL_Offset;
+import static org.firstinspires.ftc.teamcode.tuning.roboConstants.DriveConstants.FR_Offset;
+
 import androidx.annotation.NonNull;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -35,10 +40,10 @@ public class DriveSubsystem {
    }
 
     public void setDriveMotorPowers(@NonNull List<DcMotorEx> driveMotors, double[] velocity, double speedMultiplier) {
-        driveMotors.get(0).setPower(velocity[0] * speedMultiplier); // Front left
-        driveMotors.get(1).setPower(velocity[1] * speedMultiplier); // Back left
-        driveMotors.get(2).setPower(velocity[2] * speedMultiplier); // Front Right
-        driveMotors.get(3).setPower(velocity[3] * speedMultiplier); // Back Right
+        driveMotors.get(0).setPower(velocity[0] * speedMultiplier * FL_Offset); // Front left
+        driveMotors.get(1).setPower(velocity[1] * speedMultiplier * BL_Offset); // Back left
+        driveMotors.get(2).setPower(velocity[2] * speedMultiplier * FR_Offset); // Front Right
+        driveMotors.get(3).setPower(velocity[3] * speedMultiplier * BR_Offset); // Back Right
     }
 
     public void setMotorsMode(@NonNull DcMotorEx motor, DcMotorEx.RunMode mode) {
