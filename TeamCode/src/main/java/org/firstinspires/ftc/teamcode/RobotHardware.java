@@ -14,11 +14,11 @@ public class RobotHardware {
 
     // Drive
     public DcMotorEx leftFrontDrive, leftBackDrive, rightFrontDrive, rightBackDrive;
-    private final  List<DcMotorEx> driveMotors;
+    public final  List<DcMotorEx> driveMotors;
 
     // Aux
     public DcMotorEx Flywheel_L, Flywheel_R, Intake, Transfer;
-    private final  List<DcMotorEx> flyWheels;
+    public final  List<DcMotorEx> flyWheels;
 
     public Servo Gate, kick_L, kick_R;
 
