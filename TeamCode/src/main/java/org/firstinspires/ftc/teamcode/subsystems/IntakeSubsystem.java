@@ -6,6 +6,12 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 public class IntakeSubsystem {
 
+    /**
+     * Get intake's current power
+     *
+     * @param motor Specific motor getting measured
+     * @return Power of motor
+     */
     public double getIntakePower(@NonNull DcMotorEx motor) {return motor.getPower();}
 
     /**
