@@ -74,7 +74,7 @@ public class DriveSubsystem {
      * @param speedMultiplier Global speed scaling factor (0.0 to 1.0 recommended)
      *                        Useful for slow mode or precision driving
      */
-    public void setDriveMotorPowers(@NonNull List<DcMotorEx> driveMotors, double[] velocity, double speedMultiplier) {
+    public void setDriveMotorPowers(@NonNull List<DcMotorEx> driveMotors, @NonNull double[] velocity, double speedMultiplier) {
         driveMotors.get(0).setPower(velocity[0] * speedMultiplier * FL_Offset); // Front left
         driveMotors.get(1).setPower(velocity[1] * speedMultiplier * BL_Offset); // Back left
         driveMotors.get(2).setPower(velocity[2] * speedMultiplier * FR_Offset); // Front Right
