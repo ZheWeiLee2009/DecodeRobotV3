@@ -15,6 +15,15 @@ import java.util.List;
 
 public class DriveSubsystem {
 
+    /**
+     * Calculates robot-centric mecanum motor powers.
+     *
+     * @param axial   Forward/backward input (+forward, -backward)
+     * @param lateral Left/right strafe input (+right, -left)
+     * @param yaw     Rotation input (+clockwise, -counterclockwise)
+     * @return Array of motor powers in order:
+     *         [0] Front Left, [1] Back Left, [2] Front Right, [3] Back Right
+     */
    public double[] calculateMotorPowers(double axial, double lateral, double yaw) {
         double[] motorPowers = new double[4];
         motorPowers[0] = (axial + lateral + yaw);
@@ -24,6 +33,18 @@ public class DriveSubsystem {
         return motorPowers;
    }
 
+    /**
+     * Calculates field-oriented mecanum motor powers.
+     * Converts field-centric joystick inputs into robot-centric motion
+     * using the robot's current heading.
+     *
+     * @param axial   Forward/backward field input (+forward, -backward)
+     * @param lateral Left/right field input (+right, -left)
+     * @param yaw     Rotation input (+clockwise, -counterclockwise)
+     * @param heading Robot current heading in RADIANS (from IMU)
+     * @return Array of motor powers in order:
+     *         [0] Front Left, [1] Back Left, [2] Front Right, [3] Back Right
+     */
    public double[] calculateFODMotorPowers(double axial, double lateral, double yaw, double heading) {
 
         double[] motorPowers = new double[4];
@@ -39,6 +60,20 @@ public class DriveSubsystem {
         return motorPowers;
    }
 
+    /**
+     * Sets power to all drive motors using precomputed motor velocities.
+     *
+     * Expected motor order in list:
+     * [0] Front Left
+     * [1] Back Left
+     * [2] Front Right
+     * [3] Back Right
+     *
+     * @param driveMotors     List of 4 drive motors (must not be null)
+     * @param velocity        Array of motor powers (length must be 4)
+     * @param speedMultiplier Global speed scaling factor (0.0 to 1.0 recommended)
+     *                        Useful for slow mode or precision driving
+     */
     public void setDriveMotorPowers(@NonNull List<DcMotorEx> driveMotors, double[] velocity, double speedMultiplier) {
         driveMotors.get(0).setPower(velocity[0] * speedMultiplier * FL_Offset); // Front left
         driveMotors.get(1).setPower(velocity[1] * speedMultiplier * BL_Offset); // Back left
@@ -46,21 +81,51 @@ public class DriveSubsystem {
         driveMotors.get(3).setPower(velocity[3] * speedMultiplier * BR_Offset); // Back Right
     }
 
-    public void setMotorsMode(@NonNull DcMotorEx motor, DcMotorEx.RunMode mode) {
+    /**
+     * Sets the run mode of a single motor.
+     *
+     * @param motor Motor to configure (must not be null)
+     * @param mode  Desired RunMode (e.g. RUN_WITHOUT_ENCODER, RUN_USING_ENCODER)
+     */
+    public void setMotorsMode(@NonNull DcMotorEx motor, @NonNull DcMotorEx.RunMode mode) {
         motor.setMode(mode);
     }
 
-    public void setMotorMode(@NonNull List<DcMotorEx> type, DcMotorEx.RunMode mode) {
-        for (DcMotorEx motor : type) {
+    /**
+     * Sets the run mode for a list of motors.
+     *
+     * @param list List of motors to configure (must not be null)
+     * @param mode Desired RunMode for all motors
+     */
+    public void setMotorMode(@NonNull List<DcMotorEx> list, @NonNull DcMotorEx.RunMode mode) {
+        for (DcMotorEx motor : list) {
             motor.setMode(mode);
         }
     }
 
-    public void setZeroPowerBehavior(@NonNull DcMotorEx motor, DcMotor.ZeroPowerBehavior zpb) {
+    /**
+     * Sets the ZeroPowerBehavior for a single motor.
+     *
+     * @param motor Motor to configure (must not be null)
+     * @param zpb   ZeroPowerBehavior (BRAKE or FLOAT)
+     */
+    public void setZeroPowerBehavior(
+            @NonNull DcMotorEx motor,
+            @NonNull DcMotor.ZeroPowerBehavior zpb
+    ) {
         motor.setZeroPowerBehavior(zpb);
     }
 
-    public void setZeroPowerBehavior(@NonNull List<DcMotorEx> type, DcMotor.ZeroPowerBehavior zpb) {
+    /**
+     * Sets the ZeroPowerBehavior for a list of motors.
+     *
+     * @param type List of motors (must not be null)
+     * @param zpb  ZeroPowerBehavior applied to all motors (BRAKE or FLOAT)
+     */
+    public void setZeroPowerBehavior(
+            @NonNull List<DcMotorEx> type,
+            @NonNull DcMotor.ZeroPowerBehavior zpb
+    ) {
         for (DcMotorEx motor : type) {
             motor.setZeroPowerBehavior(zpb);
         }
