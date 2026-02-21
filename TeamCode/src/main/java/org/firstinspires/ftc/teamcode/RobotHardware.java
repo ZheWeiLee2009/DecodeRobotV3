@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
-import org.firstinspires.ftc.teamcode.utils.GoBildaPinpointDriver;
+import com.qualcomm.hardware.gobilda.GoBildaPinpointDriver;
 
 import java.util.Arrays;
 import java.util.List;
