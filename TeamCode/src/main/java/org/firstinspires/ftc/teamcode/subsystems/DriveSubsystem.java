@@ -81,6 +81,17 @@ public class DriveSubsystem {
         driveMotors.get(3).setPower(velocity[3] * speedMultiplier * BR_Offset); // Back Right
     }
 
+    public String calculatedMotorPowersToString(double[] power) {
+        if (power == null || power.length < 4) {
+            return "Motor powers invalid";
+        }
+
+        return String.format(
+                "FL: %.2f | BL: %.2f | FR: %.2f | BR: %.2f",
+                power[0], power[1], power[2], power[3]
+        );
+    }
+
     /**
      * Sets the run mode of a single motor.
      *

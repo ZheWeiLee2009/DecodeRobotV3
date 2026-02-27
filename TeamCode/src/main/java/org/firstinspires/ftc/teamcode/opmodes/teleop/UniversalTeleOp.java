@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.subsystems.DriveSubsystem;
 public class UniversalTeleOp extends OpMode{
 
     RobotHardware bot;
-    DriveSubsystem drivetrain;
+    DriveSubsystem drivetrain = new DriveSubsystem();
 
     private ElapsedTime opmodeTimer = new ElapsedTime();
 
@@ -38,6 +38,11 @@ public class UniversalTeleOp extends OpMode{
 
         double[] powers = drivetrain.calculateMotorPowers(y, x, rx);
         drivetrain.setDriveMotorPowers(bot.driveMotors, powers, DriveSpeed);
+
+        telemetry.addLine(drivetrain.calculatedMotorPowersToString(powers));
+        telemetry.addData("y", y);
+        telemetry.addData("x", x);
+        telemetry.addData("rx", rx);
 
     }
 }
