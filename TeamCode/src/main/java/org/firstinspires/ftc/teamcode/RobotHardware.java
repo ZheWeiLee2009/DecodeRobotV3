@@ -60,7 +60,7 @@ public class RobotHardware {
         rightBackDrive.setDirection(DcMotorEx.Direction.FORWARD);
 
         Flywheel_L.setDirection(DcMotorSimple.Direction.FORWARD);
-        Flywheel_L.setDirection(DcMotorSimple.Direction.REVERSE);
+        Flywheel_R.setDirection(DcMotorSimple.Direction.REVERSE);
 
         // Odometry
         // Odometry Computer
