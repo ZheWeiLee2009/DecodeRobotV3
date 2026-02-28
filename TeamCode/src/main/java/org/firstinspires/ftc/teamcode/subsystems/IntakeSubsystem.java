@@ -18,23 +18,19 @@ public class IntakeSubsystem {
      * Set power of the intake
      *
      * @param motor DcMotorEx, to add intake motor in here.
-     * @param lvl Low to High, 0 => 4. 0 being off, 4 being maxPower
+     * @param lvl Low to High, -1 => 2. 0 being off, 2 being maxPower, -1 is inverse
      */
     public void setIntakeLevel(@NonNull DcMotorEx motor, int lvl) {
         switch (lvl) {
+            case -1:
+                motor.setPower(-1.0);
             case 0:
                 motor.setPower(0.0);
                 break;
             case 1:
-                motor.setPower(0.4);
-                break;
-            case 2:
                 motor.setPower(0.6);
                 break;
-            case 3:
-                motor.setPower(0.8);
-                break;
-            case 4:
+            case 2:
                 motor.setPower(1.0);
                 break;
         }
