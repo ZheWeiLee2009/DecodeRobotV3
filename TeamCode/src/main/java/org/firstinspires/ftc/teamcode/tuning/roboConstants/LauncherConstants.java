@@ -8,13 +8,13 @@ public class LauncherConstants {
 
     // Driver
     @Sorter(sort = 0)
-    public static double userFarShootingVelocity = 1800;
+    public static double userFarShootingVelocity = 5200;
 
     @Sorter(sort = 0)
-    public static double userCenterShootingVelocity = 1600;
+    public static double userCenterShootingVelocity = 4200;
 
     @Sorter(sort = 0)
-    public static double userHalfShootingVelocity= 1500;
+    public static double userHalfShootingVelocity= 3200;
 
 
     // Auto
