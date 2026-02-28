@@ -108,7 +108,7 @@ public class DriveSubsystem {
      * @param list List of motors to configure (must not be null)
      * @param mode Desired RunMode for all motors
      */
-    public void setMotorMode(@NonNull List<DcMotorEx> list, @NonNull DcMotorEx.RunMode mode) {
+    public void setMotorsMode(@NonNull List<DcMotorEx> list, @NonNull DcMotorEx.RunMode mode) {
         for (DcMotorEx motor : list) {
             motor.setMode(mode);
         }
