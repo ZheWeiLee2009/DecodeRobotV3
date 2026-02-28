@@ -16,7 +16,7 @@ public class TransferSubsystem {
 
     // Servo positions for open and closed gate
     private static final double GATE_OPEN_POSITION = 0.2;
-    private static final double GATE_CLOSED_POSITION = 0.8;
+    private static final double GATE_CLOSED_POSITION = 0.5;
 
     // Tolerance to detect if servo is moving
     private static final double POSITION_TOLERANCE = 0.02;
@@ -91,6 +91,20 @@ public class TransferSubsystem {
             return GateState.CLOSED;
         } else {
             return GateState.ACTION;
+        }
+    }
+
+    public String gatestateToString(GateState state) {
+        switch (state) {
+            default:
+                return "NULL";
+            case OPEN:
+                return "OPEN";
+            case CLOSED:
+                return "Closed";
+            case ACTION:
+                // ACTION should not be commanded directly
+                return "ACTION";
         }
     }
 }
