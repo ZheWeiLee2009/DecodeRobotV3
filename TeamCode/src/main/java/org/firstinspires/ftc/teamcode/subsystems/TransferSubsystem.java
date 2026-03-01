@@ -1,5 +1,11 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
+import static org.firstinspires.ftc.teamcode.tuning.roboConstants.TransferConstants.fullPowerTransfer;
+import static org.firstinspires.ftc.teamcode.tuning.roboConstants.TransferConstants.gateClosed;
+import static org.firstinspires.ftc.teamcode.tuning.roboConstants.TransferConstants.gateOpen;
+import static org.firstinspires.ftc.teamcode.tuning.roboConstants.TransferConstants.halfPowerTransfer;
+import static org.firstinspires.ftc.teamcode.tuning.roboConstants.TransferConstants.offPowerTransfer;
+
 import androidx.annotation.NonNull;
 
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -15,8 +21,8 @@ public class TransferSubsystem {
     }
 
     // Servo positions for open and closed gate
-    private static final double GATE_OPEN_POSITION = 0.2;
-    private static final double GATE_CLOSED_POSITION = 0.5;
+    private static double GATE_OPEN_POSITION = gateOpen;
+    private static double GATE_CLOSED_POSITION = gateClosed;
 
     // Tolerance to detect if servo is moving
     private static final double POSITION_TOLERANCE = 0.02;
@@ -41,13 +47,13 @@ public class TransferSubsystem {
     public void setTransferLevel(@NonNull DcMotorEx motor, int lvl) {
         switch (lvl) {
             case 0:
-                motor.setPower(0.0);
+                motor.setPower(offPowerTransfer);
                 break;
             case 1:
-                motor.setPower(0.6);
+                motor.setPower(halfPowerTransfer);
                 break;
             case 2:
-                motor.setPower(1.0);
+                motor.setPower(fullPowerTransfer);
                 break;
         }
     }

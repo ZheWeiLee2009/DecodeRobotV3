@@ -1,5 +1,8 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
+import static org.firstinspires.ftc.teamcode.tuning.roboConstants.IntakeConstants.fullPowerIntake;
+import static org.firstinspires.ftc.teamcode.tuning.roboConstants.IntakeConstants.halfPowerIntake;
+
 import androidx.annotation.NonNull;
 
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -28,10 +31,10 @@ public class IntakeSubsystem {
                 motor.setPower(0.0);
                 break;
             case 1:
-                motor.setPower(0.6);
+                motor.setPower(halfPowerIntake);
                 break;
             case 2:
-                motor.setPower(1.0);
+                motor.setPower(fullPowerIntake);
                 break;
         }
     }
