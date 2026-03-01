@@ -65,7 +65,7 @@ public class RobotHardware {
         // Odometry
         // Odometry Computer
         odo = hwMap.get(GoBildaPinpointDriver.class, "POC");
-        odo.setOffsets(0, 0, DistanceUnit.MM); // Not Calibrated
+        odo.setOffsets(4.25, 2.25, DistanceUnit.INCH); // Not Calibrated
         odo.setEncoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD);
 
         odo.setEncoderDirections(GoBildaPinpointDriver.EncoderDirection.FORWARD, GoBildaPinpointDriver.EncoderDirection.FORWARD); // Direction

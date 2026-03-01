@@ -18,9 +18,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 public class Constants {
     public static FollowerConstants followerConstants = new FollowerConstants()
-            .mass(13)
-//            .forwardZeroPowerAcceleration(-21.16128)
-//            .lateralZeroPowerAcceleration(-44.73058)
+            .mass(11)
+            .forwardZeroPowerAcceleration(-42.033298543027946)
+            .lateralZeroPowerAcceleration(-64.11007899098118)
 //            .translationalPIDFCoefficients(new PIDFCoefficients(0.06, 0, 0.0, 0.01))
 //            .headingPIDFCoefficients(new PIDFCoefficients(1.2, 0, 0.01, 0.01))
 //            .drivePIDFCoefficients(new FilteredPIDFCoefficients(0.018,0.0,0.00002,0.5,0.01))
@@ -37,23 +37,22 @@ public class Constants {
             .leftRearMotorDirection(DcMotorEx.Direction.REVERSE)
             .rightFrontMotorDirection(DcMotorEx.Direction.FORWARD)
             .rightRearMotorDirection(DcMotorEx.Direction.FORWARD)
-//            .xVelocity(45.42)
-//            .yVelocity(38.45)
+            .xVelocity(81.03643510473054)
+            .yVelocity(66.987819401298)
             ;
 
 
     public static PathConstraints pathConstraints = new PathConstraints(0.99, 100, 1, 1);
 
     public static PinpointConstants localizerConstants = new PinpointConstants()
-            .forwardPodY(-5)
-            .strafePodX(0.5)
+            .forwardPodY(4.25)
+            .strafePodX(2.25)
             .distanceUnit(DistanceUnit.INCH)
             .hardwareMapName("POC")
             .encoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD)
-            .forwardEncoderDirection(GoBildaPinpointDriver.EncoderDirection.FORWARD)
+            .forwardEncoderDirection(GoBildaPinpointDriver.EncoderDirection.REVERSED)
             .strafeEncoderDirection(GoBildaPinpointDriver.EncoderDirection.FORWARD)
-            .forwardEncoderDirection(GoBildaPinpointDriver.EncoderDirection.FORWARD)
-            .strafeEncoderDirection(GoBildaPinpointDriver.EncoderDirection.REVERSED);
+            ;
 
     public static Follower createFollower(HardwareMap hardwareMap) {
         return new FollowerBuilder(followerConstants, hardwareMap)
