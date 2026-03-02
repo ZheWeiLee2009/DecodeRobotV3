@@ -45,23 +45,18 @@ public class UniversalTeleOp extends OpMode{
         drivetrain.setZeroPowerBehavior(bot.driveMotors, DcMotor.ZeroPowerBehavior.BRAKE);
         drivetrain.setZeroPowerBehavior(bot.Intake, DcMotor.ZeroPowerBehavior.BRAKE);
         drivetrain.setZeroPowerBehavior(bot.Transfer, DcMotor.ZeroPowerBehavior.FLOAT);
+
+        drivetrain.enableBuckReads(hardwareMap);
     }
 
     @Override
     public void start() {
+
         opmodeTimer.reset();
     }
 
     @Override
     public void loop(){
-
-        // ENABLE BULK READS
-        // This is the #1 way to lower loop times.
-        // It reads all sensors on a hub in one go instead of separate slow I2C calls.
-        List<LynxModule> allHubs = hardwareMap.getAll(LynxModule.class);
-        for (LynxModule hub : allHubs) {
-            hub.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
-        }
 
 
         // Directional Movements

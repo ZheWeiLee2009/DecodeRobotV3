@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
 import static org.firstinspires.ftc.teamcode.tuning.roboConstants.DriveConstants.BL_Offset;
 import static org.firstinspires.ftc.teamcode.tuning.roboConstants.DriveConstants.BR_Offset;
 import static org.firstinspires.ftc.teamcode.tuning.roboConstants.DriveConstants.FL_Offset;
@@ -7,8 +8,10 @@ import static org.firstinspires.ftc.teamcode.tuning.roboConstants.DriveConstants
 
 import androidx.annotation.NonNull;
 
+import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
 
 import java.util.List;
@@ -141,4 +144,18 @@ public class DriveSubsystem {
             motor.setZeroPowerBehavior(zpb);
         }
     }
+
+    /**
+     * ENABLE BULK READS
+     * This is the #1 way to lower loop times.
+     * It reads all sensors on a hub in one go instead of separate slow I2C calls.
+     *
+     */
+    public void enableBuckReads(HardwareMap hwMap){
+        List<LynxModule> allHubs = hwMap.getAll(LynxModule.class);
+        for (LynxModule hub : allHubs) {
+            hub.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
+        }
+    }
+
 }
