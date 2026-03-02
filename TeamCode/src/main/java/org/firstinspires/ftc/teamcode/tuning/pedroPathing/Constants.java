@@ -21,26 +21,30 @@ public class Constants {
 
     public static FollowerConstants followerConstants = new FollowerConstants()
             .mass(11)
-            .forwardZeroPowerAcceleration(-42.033298543027946)
-            .lateralZeroPowerAcceleration(-64.11007899098118)
+            .forwardZeroPowerAcceleration(-37.105)
+            .lateralZeroPowerAcceleration(-62.840)
             .useSecondaryTranslationalPIDF(false)
             .useSecondaryHeadingPIDF(false)
             .useSecondaryDrivePIDF(false)
-
-            .translationalPIDFCoefficients(new PIDFCoefficients(0.09, 0, 0.008, .021))
-//            .secondaryTranslationalPIDFCoefficients(new PIDFCoefficients(0.055,0,0.004,0.02))
-
-            .headingPIDFCoefficients(new PIDFCoefficients(1, 0, .0008, 0.011))
-//            .secondaryHeadingPIDFCoefficients(new PIDFCoefficients(.8, 0, 0.04, 0.02))
-
-            .drivePIDFCoefficients(new FilteredPIDFCoefficients(0.03,0.0,0.000008,0.5,0.022))
-//            .secondaryDrivePIDFCoefficients(new FilteredPIDFCoefficients(0.018,0.0,0.0002,0.5,0.02))
-
+            .translationalPIDFCoefficients(new PIDFCoefficients(0.042, 0, 0.005, 0.021))
+            .headingPIDFCoefficients(new PIDFCoefficients(0.7,0,0.0008,0.023))
+            .drivePIDFCoefficients(new FilteredPIDFCoefficients(0.016,0, 0.00001, 0.6, 0.00001))
             .centripetalScaling(.00485)
+
+//            .translationalPIDFCoefficients(new PIDFCoefficients(0.09, 0, 0.008, .021))
+////            .secondaryTranslationalPIDFCoefficients(new PIDFCoefficients(0.055,0,0.004,0.02))
+//
+//            .headingPIDFCoefficients(new PIDFCoefficients(1, 0, .0008, 0.011))
+////            .secondaryHeadingPIDFCoefficients(new PIDFCoefficients(.8, 0, 0.04, 0.02))
+//
+//            .drivePIDFCoefficients(new FilteredPIDFCoefficients(0.03,0.0,0.000008,0.5,0.022))
+////            .secondaryDrivePIDFCoefficients(new FilteredPIDFCoefficients(0.018,0.0,0.0002,0.5,0.02))
+
+//            .centripetalScaling(.00485)
             ;
 
     public static MecanumConstants driveConstants = new MecanumConstants()
-            .maxPower(.1)
+            .maxPower(0.7)
             .rightFrontMotorName("FR")
             .rightRearMotorName("BR")
             .leftRearMotorName("BL")
@@ -49,12 +53,12 @@ public class Constants {
             .leftRearMotorDirection(DcMotorEx.Direction.REVERSE)
             .rightFrontMotorDirection(DcMotorEx.Direction.FORWARD)
             .rightRearMotorDirection(DcMotorEx.Direction.FORWARD)
-            .xVelocity(72.48)
-            .yVelocity(60.82)
+            .xVelocity(61.268)
+            .yVelocity(47.436)
             ;
 
 
-    public static PathConstraints pathConstraints = new PathConstraints(0.99, 100, 0.84, 1.4);
+    public static PathConstraints pathConstraints = new PathConstraints(0.99, 500, 0.84, 1.4);
 
     public static PinpointConstants localizerConstants = new PinpointConstants()
             .forwardPodY(4.25)
