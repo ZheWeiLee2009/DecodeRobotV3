@@ -11,19 +11,19 @@ public class LauncherConstants {
     public static double userFarShootingVelocity = 5200;
 
     @Sorter(sort = 0)
-    public static double userCenterShootingVelocity = 4200;
+    public static double userCenterShootingVelocity = 3350;
 
     @Sorter(sort = 0)
-    public static double userHalfShootingVelocity= 3200;
+    public static double userHalfShootingVelocity= 2800;
 
 
     // Auto
     @Sorter(sort = 1)
-    public static double autoFarShootingVelocity = 1800;
+    public static double autoFarShootingVelocity = 3800 ;
 
     @Sorter(sort = 1)
-    public static double autoCenterShootingVelocity = 1600;
+    public static double autoCenterShootingVelocity = 3350;
 
     @Sorter(sort = 1)
-    public static double autoHalfShootingVelocity = 1500;
+    public static double autoHalfShootingVelocity = 3025;
 }
