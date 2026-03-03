@@ -51,8 +51,11 @@ public class UniversalTeleOp extends OpMode{
 
     @Override
     public void start() {
-
         opmodeTimer.reset();
+        launcher.setFlywheelsVelocity(bot.flyWheels, userHalfShootingVelocity);
+        intake.setIntakeLevel(bot.Intake, 1);
+        transfer.setTransferLevel(bot.Transfer,1);
+        transfer.setGateState(bot.Gate, TransferSubsystem.GateState.CLOSED);
     }
 
     @Override
@@ -62,7 +65,7 @@ public class UniversalTeleOp extends OpMode{
         // Directional Movements
         double y = -gamepad1.left_stick_y;
         double x = gamepad1.left_stick_x;
-        double rx = gamepad1.right_stick_x;
+        double rx = gamepad1.right_stick_x * .8; // Added multiplier for better contorl
 
         double[] powers = drivetrain.calculateMotorPowers(y, x, rx);
         drivetrain.setDriveMotorPowers(bot.driveMotors, powers, DriveSpeed);
@@ -87,12 +90,16 @@ public class UniversalTeleOp extends OpMode{
             intake.setIntakeLevel(bot.Intake, -1);
         }
 
-        if (gamepad1.leftBumperWasPressed()) {
+        // PREP
+        if (gamepad1.left_bumper) {
+            intake.setIntakeLevel(bot.Intake,2);
             transfer.setTransferLevel(bot.Transfer, 2);
-        } else if (gamepad1.left_stick_button) {
+        } else {
+            intake.setIntakeLevel(bot.Intake,1);
             transfer.setTransferLevel(bot.Transfer, 0);
         }
 
+        // LAUNCH
         if (gamepad1.right_trigger > .5) {
             transfer.setGateState(bot.Gate, TransferSubsystem.GateState.OPEN);
 //            bot.Gate.setPosition(.2);
@@ -115,9 +122,6 @@ public class UniversalTeleOp extends OpMode{
         telemetry.addLine(transfer.gatestateToString(transfer.getGateState(bot.Gate)));
         telemetry.addData("transfer motor power", transfer.getTransferPower(bot.Transfer));
         telemetry.addData("intake motor power", intake.getIntakePower(bot.Intake));
-
-        telemetry.addData("\nLTrigger", (gamepad1.left_trigger > .5));
-        telemetry.addData("rTrigger", (gamepad1.right_trigger > .5));
 
         telemetry.addData("\ny", y);
         telemetry.addData("x", x);
