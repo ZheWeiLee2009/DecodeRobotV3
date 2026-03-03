@@ -29,7 +29,7 @@ public class blueTwoGateAutoPaths {
 
                                 new Pose(56.000, 85.000)
                         )
-                ).setLinearHeadingInterpolation(Math.toRadians(144), Math.toRadians(130))
+                ).setLinearHeadingInterpolation(Math.toRadians(144), Math.toRadians(134))
                 .setTimeoutConstraint(300)
                 .build();
 
@@ -47,7 +47,7 @@ public class blueTwoGateAutoPaths {
                         new BezierCurve(
                                 new Pose(14.800, 83.924),
                                 new Pose(28.955, 81.245),
-                                new Pose(12.573, 72.605)
+                                new Pose(13.573, 74.605)
                         )
                 ).setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(90))
 
@@ -60,7 +60,7 @@ public class blueTwoGateAutoPaths {
                                 new Pose(56.000, 85.000)
                         )
                 ).setLinearHeadingInterpolation(Math.toRadians(90), Math.toRadians(134))
-
+                .setTimeoutConstraint(300)
                 .build();
 
         align2 = follower.pathBuilder().addPath(
@@ -87,7 +87,7 @@ public class blueTwoGateAutoPaths {
                         new BezierCurve(
                                 new Pose(12.968, 59.680),
                                 new Pose(45.860, 62.599),
-                                new Pose(12.573, 72.605)
+                                new Pose(13.573, 74.605)
                         )
                 ).setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(90))
 
@@ -130,7 +130,7 @@ public class blueTwoGateAutoPaths {
                                 new Pose(56.000, 85.000)
                         )
                 ).setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(134))
-
+                .setTimeoutConstraint(300)
                 .build();
 
         leave = follower.pathBuilder().addPath(

@@ -74,15 +74,15 @@ public class blueTwoGateAuto extends LinearOpMode {
         idleAll();
 
         // P1
-        follow(paths.preload);
         sleep(1000); // waiting for flywheels PID
+        follow(paths.preload);
         releaseALl();
 
         // C1
         intakeAll();
         follow(paths.line1);
         idleAll();
-        follow(paths.gateOpen1);
+        follow(paths.gateOpen1, 0.6);
         follow(paths.shoot1);
         releaseALl();
 
@@ -92,7 +92,7 @@ public class blueTwoGateAuto extends LinearOpMode {
         intakeAll();
         follow(paths.line2);
         idleAll();
-        follow(paths.gateOpen2);
+        follow(paths.gateOpen2, 0.6);
         follow(paths.shoot2);
         releaseALl();
 
