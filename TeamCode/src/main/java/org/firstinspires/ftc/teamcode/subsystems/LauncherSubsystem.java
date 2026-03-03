@@ -1,7 +1,5 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
-import androidx.annotation.NonNull;
-
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 import java.util.List;
@@ -45,7 +43,7 @@ public class LauncherSubsystem {
      *
      * @return "Motor1: 4500 RPM, Motor2: 4475 RPM"
      */
-    public String getFlywheelsVelocity() {
+    public String getFlywheelsVelocityString() {
         StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < flywheelMotors.size(); i++) {
@@ -68,6 +66,18 @@ public class LauncherSubsystem {
     }
 
     /**
+     * Returns the average velocity between of the Flywheel Motors
+     *
+     * @return double - motor velocities (RPM)
+     */
+    public double getFlywheelsResultantVelocity() {
+        if (flywheelMotors.isEmpty()) {return 0;}
+
+        double sum = flywheelMotors.get(0).getVelocity() + flywheelMotors.get(1).getVelocity();
+        return ticksPerSecondToRPM((sum / 2));
+    }
+
+    /**
      * Sets flywheel velocity using RPM (output shaft RPM)
      *
      * @param rpm Desired flywheel RPM (not TPS)
@@ -79,4 +89,21 @@ public class LauncherSubsystem {
             motor.setVelocity(ticksPerSecond);
         }
     }
+
+    /**
+     * Sets flywheel Power
+     *
+     * @param power Desired Power of motors
+     */
+    public void setFlywheelsPower(double power) {
+        for (DcMotorEx motor : flywheelMotors) {
+            motor.setPower(power);
+        }
+    }
+
+    public double getFlywheelLRPM() {return ticksPerSecondToRPM(Math.abs(flywheelMotors.get(0).getVelocity()));}
+    public double getFlywheelRRPM() {return ticksPerSecondToRPM(Math.abs(flywheelMotors.get(1).getVelocity()));}
+
+    public double getFlywheelLPower() {return flywheelMotors.get(0).getPower();}
+    public double getFlywheelRPower() {return flywheelMotors.get(1).getPower();}
 }

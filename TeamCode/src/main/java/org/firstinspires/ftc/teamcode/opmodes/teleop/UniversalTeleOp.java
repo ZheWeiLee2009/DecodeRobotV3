@@ -5,7 +5,6 @@ import static org.firstinspires.ftc.teamcode.tuning.roboConstants.LauncherConsta
 import static org.firstinspires.ftc.teamcode.tuning.roboConstants.LauncherConstants.userFarShootingVelocity;
 import static org.firstinspires.ftc.teamcode.tuning.roboConstants.LauncherConstants.userHalfShootingVelocity;
 
-import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -16,8 +15,6 @@ import org.firstinspires.ftc.teamcode.subsystems.DriveSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.LauncherSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.TransferSubsystem;
-
-import java.util.List;
 
 
 @TeleOp(name = "Universal TeleOP", group = ".")
@@ -122,7 +119,7 @@ public class UniversalTeleOp extends OpMode{
         lastTime = currentTime;
 
         telemetry.addLine(drivetrain.calculatedMotorPowersToString(powers));
-        telemetry.addLine(launcher.getFlywheelsVelocity());
+        telemetry.addLine(launcher.getFlywheelsVelocityString());
         telemetry.addLine(transfer.gatestateToString(transfer.getGateState()));
         telemetry.addData("transfer motor power", transfer.getTransferPower());
         telemetry.addData("intake motor power", intake.getIntakePower());
