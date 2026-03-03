@@ -5,6 +5,8 @@ import static org.firstinspires.ftc.teamcode.tuning.roboConstants.LauncherConsta
 import static org.firstinspires.ftc.teamcode.tuning.roboConstants.LauncherConstants.userFarShootingVelocity;
 import static org.firstinspires.ftc.teamcode.tuning.roboConstants.LauncherConstants.userHalfShootingVelocity;
 
+import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -26,6 +28,8 @@ public class UniversalTeleOp extends OpMode{
     TransferSubsystem transfer;
     IntakeSubsystem intake;
 
+    private LauncherSubsystem.speeds speeds;
+
     private ElapsedTime opmodeTimer = new ElapsedTime();
 
     private long lastTime = 0;
@@ -41,19 +45,23 @@ public class UniversalTeleOp extends OpMode{
         drivetrain.setMotorsMode(bot.driveMotors, DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         drivetrain.setMotorsMode(bot.Intake, DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         drivetrain.setMotorsMode(bot.Transfer, DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        drivetrain.setMotorsMode(bot.flyWheels, DcMotor.RunMode.RUN_USING_ENCODER);
-
+//        drivetrain.setMotorsMode(bot.flyWheels, DcMotor.RunMode.RUN_USING_ENCODER);
+        drivetrain.setMotorsMode(bot.flyWheels, DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        
         drivetrain.setZeroPowerBehavior(bot.driveMotors, DcMotor.ZeroPowerBehavior.BRAKE);
         drivetrain.setZeroPowerBehavior(bot.Intake, DcMotor.ZeroPowerBehavior.BRAKE);
         drivetrain.setZeroPowerBehavior(bot.Transfer, DcMotor.ZeroPowerBehavior.FLOAT);
 
         drivetrain.enableBuckReads(hardwareMap);
+
+        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
+
     }
 
     @Override
     public void start() {
         opmodeTimer.reset();
-        launcher.setFlywheelsVelocity(userHalfShootingVelocity);
+        speeds = LauncherSubsystem.speeds.userHalf;
         intake.setIntakeLevel( 1);
         transfer.setTransferLevel(1);
         transfer.setGateState(TransferSubsystem.GateState.CLOSED);
@@ -71,15 +79,42 @@ public class UniversalTeleOp extends OpMode{
         double[] powers = drivetrain.calculateMotorPowers(y, x, rx);
         drivetrain.setDriveMotorPowers(powers, DriveSpeed);
 
+//        if (gamepad1.dpad_right){
+//            launcher.setFlywheelVelocityPID(userHalfShootingVelocity);
+//        } else if (gamepad1.dpad_down) {
+//            launcher.setFlywheelVelocityPID(userCenterShootingVelocity);
+//        }  else if (gamepad1.dpad_left) {
+//            launcher.setFlywheelVelocityPID(userFarShootingVelocity);
+//        }  else if (gamepad1.dpad_up) {
+//            launcher.setFlywheelVelocityPID(0);
+//        }
+
         if (gamepad1.dpad_right){
-            launcher.setFlywheelsVelocity(userHalfShootingVelocity);
+            speeds = LauncherSubsystem.speeds.userHalf;
         } else if (gamepad1.dpad_down) {
-            launcher.setFlywheelsVelocity(userCenterShootingVelocity);
+            speeds = LauncherSubsystem.speeds.userCenter;
         }  else if (gamepad1.dpad_left) {
-            launcher.setFlywheelsVelocity(userFarShootingVelocity);
+            speeds = LauncherSubsystem.speeds.userFar;
         }  else if (gamepad1.dpad_up) {
-            launcher.setFlywheelsVelocity(0);
+            speeds = LauncherSubsystem.speeds.off;
         }
+
+        switch (speeds) {
+            case userHalf:
+                launcher.setFlywheelVelocityPID(userHalfShootingVelocity);
+                break;
+            case userCenter:
+                launcher.setFlywheelVelocityPID(userCenterShootingVelocity);
+                break;
+            case userFar:
+                launcher.setFlywheelVelocityPID(userFarShootingVelocity);
+                break;
+            case off:
+                launcher.setFlywheelsPower(0);
+                break;
+
+        }
+
 
         if (gamepad1.triangle){
             intake.setIntakeLevel( 0);

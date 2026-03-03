@@ -19,6 +19,16 @@ public class LauncherSubsystem {
 
     private static double target = 0;
 
+    public enum speeds {
+        userHalf,
+        userCenter,
+        userFar,
+        autoHalf,
+        autoCenter,
+        autoFar,
+        off
+    }
+
 
     public LauncherSubsystem (List<DcMotorEx> flywheelMotorsX){
         this.flywheelMotors = flywheelMotorsX;
@@ -104,6 +114,8 @@ public class LauncherSubsystem {
 
     public void setFlywheelVelocityPID(double RPM) {
         this.target = RPM;
+
+        controller.setPIDF(kP, kI, kD, kF);
 
         double currentRPM = getFlywheelsResultantVelocity();
         double output = controller.calculate(currentRPM, target);
