@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
+import com.arcrobotics.ftclib.controller.PIDFController;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 import java.util.List;
@@ -7,7 +8,17 @@ import java.util.List;
 
 public class LauncherSubsystem {
 
+
+    public static final double kP = 0.0058;
+    public static final double kI = 0.0;
+    public static final double kD = 0.000002;
+    public static final double kF = 1.0 / 5400.0;
+
     private List<DcMotorEx> flywheelMotors;
+    private PIDFController controller = new PIDFController(kP, kI, kD, kF);
+
+    private static double target = 0;
+
 
     public LauncherSubsystem (List<DcMotorEx> flywheelMotorsX){
         this.flywheelMotors = flywheelMotorsX;
@@ -82,12 +93,25 @@ public class LauncherSubsystem {
      *
      * @param rpm Desired flywheel RPM (not TPS)
      */
+//    @Deprecated
     public void setFlywheelsVelocity(double rpm) {
         double ticksPerSecond = rpmToTicksPerSecond(rpm);
 
         for (DcMotorEx motor : flywheelMotors) {
             motor.setVelocity(ticksPerSecond);
         }
+    }
+
+    public void setFlywheelVelocityPID(double RPM) {
+        this.target = RPM;
+
+        double currentRPM = getFlywheelsResultantVelocity();
+        double output = controller.calculate(currentRPM, target);
+
+        // Clamp output
+        output = Math.max(-1.0, Math.min(1.0, output));
+
+        setFlywheelsPower(output);
     }
 
     /**
