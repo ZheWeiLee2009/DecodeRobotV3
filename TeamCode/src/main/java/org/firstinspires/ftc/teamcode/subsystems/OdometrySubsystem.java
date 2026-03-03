@@ -5,12 +5,16 @@ import com.qualcomm.hardware.gobilda.GoBildaPinpointDriver;
 
 public class OdometrySubsystem {
 
+    private GoBildaPinpointDriver odometry;
+
+    public OdometrySubsystem(GoBildaPinpointDriver odometryX) {
+        this.odometry = odometryX;
+    }
     /**
      * Returns the position of the robot relative to its starting point.
      *
-     * @param odometry Odometry object
      * @return Pose2D object of Position
      */
-    public Pose2D robotPos(GoBildaPinpointDriver odometry) { return odometry.getPosition();}
+    public Pose2D robotPos() { return odometry.getPosition();}
 
 }

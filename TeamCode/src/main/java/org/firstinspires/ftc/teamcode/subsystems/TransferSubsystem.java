@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import java.util.List;
+
 public class TransferSubsystem {
 
     /** Enum to represent the gate state */
@@ -18,6 +20,14 @@ public class TransferSubsystem {
         OPEN,
         CLOSED,
         ACTION // Servo moving or in-between positions
+    }
+
+    private DcMotorEx motor;
+    private Servo servo;
+
+    public TransferSubsystem (DcMotorEx motorX, Servo servoX) {
+        this.motor = motorX;
+        this.servo = servoX;
     }
 
     // Servo positions for open and closed gate
@@ -32,19 +42,17 @@ public class TransferSubsystem {
     /**
      * Get Transfer's current power
      *
-     * @param motor Specific transfer motor
      * @return Current motor power (0.0 to 1.0)
      */
-    public double getTransferPower(@NonNull DcMotorEx motor) {return motor.getPower();}
+    public double getTransferPower() {return motor.getPower();}
 
     /**
      * Set transfer motor power level.
      * 0 = Off, 1 = 60%, 2 = Full Power
      *
-     * @param motor DcMotorEx controlling transfer
      * @param lvl Power level (0, 1, or 2)
      */
-    public void setTransferLevel(@NonNull DcMotorEx motor, int lvl) {
+    public void setTransferLevel(int lvl) {
         switch (lvl) {
             case 0:
                 motor.setPower(offPowerTransfer);
@@ -65,10 +73,9 @@ public class TransferSubsystem {
      * Set the gate to OPEN or CLOSED.
      * ACTION is determined automatically and should not be commanded.
      *
-     * @param servo The gate servo
      * @param state Desired gate state (OPEN or CLOSED)
      */
-    public void setGateState(@NonNull Servo servo, @NonNull GateState state) {
+    public void setGateState(@NonNull GateState state) {
         switch (state) {
             case OPEN:
                 servo.setPosition(GATE_OPEN_POSITION);
@@ -85,10 +92,9 @@ public class TransferSubsystem {
     /**
      * Gets the current state of the gate based on servo position.
      *
-     * @param servo The gate servo
      * @return GateState: OPEN, CLOSED, or ACTION (moving/in-between)
      */
-    public GateState getGateState(@NonNull Servo servo) {
+    public GateState getGateState() {
         double position = servo.getPosition();
 
         if (Math.abs(position - GATE_OPEN_POSITION) <= POSITION_TOLERANCE) {

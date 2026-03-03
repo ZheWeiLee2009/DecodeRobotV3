@@ -24,10 +24,10 @@ public class blueTwoGateAuto extends LinearOpMode {
     private Follower follower;
 
     RobotHardware bot;
-    DriveSubsystem drivetrain = new DriveSubsystem();
-    LauncherSubsystem launcher = new LauncherSubsystem();
-    TransferSubsystem transfer = new TransferSubsystem();
-    IntakeSubsystem intake = new IntakeSubsystem();
+    DriveSubsystem drivetrain = new DriveSubsystem(bot.driveMotors);
+    LauncherSubsystem launcher = new LauncherSubsystem(bot.flyWheels);
+    TransferSubsystem transfer = new TransferSubsystem(bot.Transfer, bot.Gate);
+    IntakeSubsystem intake = new IntakeSubsystem(bot.Intake);
 
 
     private double shootingVal = autoHalfShootingVelocity;
@@ -46,10 +46,10 @@ public class blueTwoGateAuto extends LinearOpMode {
         drivetrain.setZeroPowerBehavior(bot.Intake, DcMotor.ZeroPowerBehavior.BRAKE);
         drivetrain.setZeroPowerBehavior(bot.Transfer, DcMotor.ZeroPowerBehavior.FLOAT);
 
-        transfer.setGateState(bot.Gate, TransferSubsystem.GateState.CLOSED);
-        transfer.setTransferLevel(bot.Transfer,0);
-        intake.setIntakeLevel(bot.Intake,0);
-        launcher.setFlywheelsVelocity(bot.flyWheels, 0);
+        transfer.setGateState(TransferSubsystem.GateState.CLOSED);
+        transfer.setTransferLevel(0);
+        intake.setIntakeLevel(0);
+        launcher.setFlywheelsVelocity(0);
 
 
         follower = Constants.createFollower(hardwareMap);
@@ -70,7 +70,7 @@ public class blueTwoGateAuto extends LinearOpMode {
 
         // START
 
-        launcher.setFlywheelsVelocity(bot.flyWheels, shootingVal);
+        launcher.setFlywheelsVelocity(shootingVal);
         idleAll();
 
         // P1
@@ -111,32 +111,32 @@ public class blueTwoGateAuto extends LinearOpMode {
     }
 
     private void offAll() {
-        transfer.setGateState(bot.Gate, TransferSubsystem.GateState.CLOSED);
-        intake.setIntakeLevel(bot.Intake, 0);
-        transfer.setTransferLevel(bot.Transfer, 0);
+        transfer.setGateState(TransferSubsystem.GateState.CLOSED);
+        intake.setIntakeLevel(0);
+        transfer.setTransferLevel(0);
 
     }
 
 
     private void idleAll() {
-        transfer.setGateState(bot.Gate, TransferSubsystem.GateState.CLOSED);
-        intake.setIntakeLevel(bot.Intake, 1);
-        transfer.setTransferLevel(bot.Transfer, 1);
+        transfer.setGateState(TransferSubsystem.GateState.CLOSED);
+        intake.setIntakeLevel(1);
+        transfer.setTransferLevel(1);
     }
 
     public void intakeAll() {
-        transfer.setGateState(bot.Gate, TransferSubsystem.GateState.CLOSED);
-        intake.setIntakeLevel(bot.Intake, 2);
-        transfer.setTransferLevel(bot.Transfer, 2);
+        transfer.setGateState(TransferSubsystem.GateState.CLOSED);
+        intake.setIntakeLevel( 2);
+        transfer.setTransferLevel(2);
     }
 
     private void releaseALl (){
 //        sleep(200);
-//        launcher.setFlywheelsVelocity(bot.flyWheels, shootingVal);
-        intake.setIntakeLevel(bot.Intake, 2);
-        transfer.setTransferLevel(bot.Transfer, 2);
+//        launcher.setFlywheelsVelocity(shootingVal);
+        intake.setIntakeLevel(2);
+        transfer.setTransferLevel(2);
         sleep(50);
-        transfer.setGateState(bot.Gate, TransferSubsystem.GateState.OPEN);
+        transfer.setGateState(TransferSubsystem.GateState.OPEN);
         sleep(allReleaseTimer);
     }
 

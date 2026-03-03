@@ -9,6 +9,12 @@ import java.util.List;
 
 public class LauncherSubsystem {
 
+    private List<DcMotorEx> flywheelMotors;
+
+    public LauncherSubsystem (List<DcMotorEx> flywheelMotorsX){
+        this.flywheelMotors = flywheelMotorsX;
+    }
+
     private static final double ENCODER_CPR = 28.0;     // goBILDA internal encoder
     private static final double GEAR_RATIO = 1.0;       // motor to output shaft (1:1 for 6000 RPM motor)
     private static final double EXTERNAL_RATIO = 1.0;   // belts/gears
@@ -37,10 +43,9 @@ public class LauncherSubsystem {
     /**
      * Returns formatted flywheel RPM string (output shaft RPM).
      *
-     * @param flywheelMotors List of flywheel motors
      * @return "Motor1: 4500 RPM, Motor2: 4475 RPM"
      */
-    public String getFlywheelsVelocity(@NonNull List<DcMotorEx> flywheelMotors) {
+    public String getFlywheelsVelocity() {
         StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < flywheelMotors.size(); i++) {
@@ -65,10 +70,9 @@ public class LauncherSubsystem {
     /**
      * Sets flywheel velocity using RPM (output shaft RPM)
      *
-     * @param flywheelMotors List of flywheel motors
      * @param rpm Desired flywheel RPM (not TPS)
      */
-    public void setFlywheelsVelocity(@NonNull List<DcMotorEx> flywheelMotors, double rpm) {
+    public void setFlywheelsVelocity(double rpm) {
         double ticksPerSecond = rpmToTicksPerSecond(rpm);
 
         for (DcMotorEx motor : flywheelMotors) {

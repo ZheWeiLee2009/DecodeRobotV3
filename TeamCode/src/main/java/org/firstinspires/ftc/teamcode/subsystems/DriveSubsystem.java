@@ -18,6 +18,11 @@ import java.util.List;
 
 public class DriveSubsystem {
 
+    private List<DcMotorEx> driveMotors;
+
+    public DriveSubsystem(List<DcMotorEx> driveMotorsX){
+        this.driveMotors = driveMotorsX;
+    }
     /**
      * Calculates robot-centric mecanum motor powers.
      *
@@ -72,16 +77,15 @@ public class DriveSubsystem {
      * [2] Front Right
      * [3] Back Right
      *
-     * @param driveMotors     List of 4 drive motors (must not be null)
-     * @param velocity        Array of motor powers (length must be 4)
+     * @param power        Array of motor powers (length must be 4)
      * @param speedMultiplier Global speed scaling factor (0.0 to 1.0 recommended)
      *                        Useful for slow mode or precision driving
      */
-    public void setDriveMotorPowers(@NonNull List<DcMotorEx> driveMotors, @NonNull double[] velocity, double speedMultiplier) {
-        driveMotors.get(0).setPower(velocity[0] * speedMultiplier * FL_Offset); // Front left
-        driveMotors.get(1).setPower(velocity[1] * speedMultiplier * BL_Offset); // Back left
-        driveMotors.get(2).setPower(velocity[2] * speedMultiplier * FR_Offset); // Front Right
-        driveMotors.get(3).setPower(velocity[3] * speedMultiplier * BR_Offset); // Back Right
+    public void setDriveMotorPowers(@NonNull double[] power, double speedMultiplier) {
+        driveMotors.get(0).setPower(power[0] * speedMultiplier * FL_Offset); // Front left
+        driveMotors.get(1).setPower(power[1] * speedMultiplier * BL_Offset); // Back left
+        driveMotors.get(2).setPower(power[2] * speedMultiplier * FR_Offset); // Front Right
+        driveMotors.get(3).setPower(power[3] * speedMultiplier * BR_Offset); // Back Right
     }
 
     public String calculatedMotorPowersToString(double[] power) {

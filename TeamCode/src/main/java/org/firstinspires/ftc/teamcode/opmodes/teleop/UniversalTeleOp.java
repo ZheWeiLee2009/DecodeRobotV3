@@ -24,10 +24,10 @@ import java.util.List;
 public class UniversalTeleOp extends OpMode{
 
     RobotHardware bot;
-    DriveSubsystem drivetrain = new DriveSubsystem();
-    LauncherSubsystem launcher = new LauncherSubsystem();
-    TransferSubsystem transfer = new TransferSubsystem();
-    IntakeSubsystem intake = new IntakeSubsystem();
+    DriveSubsystem drivetrain = new DriveSubsystem(bot.driveMotors);
+    LauncherSubsystem launcher = new LauncherSubsystem(bot.flyWheels);
+    TransferSubsystem transfer = new TransferSubsystem(bot.Transfer, bot.Gate);
+    IntakeSubsystem intake = new IntakeSubsystem(bot.Intake);
 
     private ElapsedTime opmodeTimer = new ElapsedTime();
 
@@ -52,10 +52,10 @@ public class UniversalTeleOp extends OpMode{
     @Override
     public void start() {
         opmodeTimer.reset();
-        launcher.setFlywheelsVelocity(bot.flyWheels, userHalfShootingVelocity);
-        intake.setIntakeLevel(bot.Intake, 1);
-        transfer.setTransferLevel(bot.Transfer,1);
-        transfer.setGateState(bot.Gate, TransferSubsystem.GateState.CLOSED);
+        launcher.setFlywheelsVelocity(userHalfShootingVelocity);
+        intake.setIntakeLevel( 1);
+        transfer.setTransferLevel(1);
+        transfer.setGateState(TransferSubsystem.GateState.CLOSED);
     }
 
     @Override
@@ -68,43 +68,43 @@ public class UniversalTeleOp extends OpMode{
         double rx = gamepad1.right_stick_x * .8; // Added multiplier for better contorl
 
         double[] powers = drivetrain.calculateMotorPowers(y, x, rx);
-        drivetrain.setDriveMotorPowers(bot.driveMotors, powers, DriveSpeed);
+        drivetrain.setDriveMotorPowers(powers, DriveSpeed);
 
         if (gamepad1.dpad_right){
-            launcher.setFlywheelsVelocity(bot.flyWheels, userHalfShootingVelocity);
+            launcher.setFlywheelsVelocity(userHalfShootingVelocity);
         } else if (gamepad1.dpad_down) {
-            launcher.setFlywheelsVelocity(bot.flyWheels, userCenterShootingVelocity);
+            launcher.setFlywheelsVelocity(userCenterShootingVelocity);
         }  else if (gamepad1.dpad_left) {
-            launcher.setFlywheelsVelocity(bot.flyWheels, userFarShootingVelocity);
+            launcher.setFlywheelsVelocity(userFarShootingVelocity);
         }  else if (gamepad1.dpad_up) {
-            launcher.setFlywheelsVelocity(bot.flyWheels, 0);
+            launcher.setFlywheelsVelocity(0);
         }
 
         if (gamepad1.triangle){
-            intake.setIntakeLevel(bot.Intake, 0);
+            intake.setIntakeLevel( 0);
         } else if (gamepad1.cross) {
-            intake.setIntakeLevel(bot.Intake, 1);
+            intake.setIntakeLevel( 1);
         }  else if (gamepad1.square) {
-            intake.setIntakeLevel(bot.Intake, 2);
+            intake.setIntakeLevel( 2);
         }  else if (gamepad1.circle ) {
-            intake.setIntakeLevel(bot.Intake, -1);
+            intake.setIntakeLevel( -1);
         }
 
         // PREP
         if (gamepad1.left_bumper) {
-            intake.setIntakeLevel(bot.Intake,2);
-            transfer.setTransferLevel(bot.Transfer, 2);
+            intake.setIntakeLevel(2);
+            transfer.setTransferLevel(2);
         } else {
-            intake.setIntakeLevel(bot.Intake,1);
-            transfer.setTransferLevel(bot.Transfer, 0);
+            intake.setIntakeLevel(1);
+            transfer.setTransferLevel(0);
         }
 
         // LAUNCH
         if (gamepad1.right_trigger > .5) {
-            transfer.setGateState(bot.Gate, TransferSubsystem.GateState.OPEN);
+            transfer.setGateState(TransferSubsystem.GateState.OPEN);
 //            bot.Gate.setPosition(.2);
         } else {
-            transfer.setGateState(bot.Gate, TransferSubsystem.GateState.CLOSED);
+            transfer.setGateState(TransferSubsystem.GateState.CLOSED);
 //            bot.Gate.setPosition(.5);
         }
 
@@ -118,10 +118,10 @@ public class UniversalTeleOp extends OpMode{
         lastTime = currentTime;
 
         telemetry.addLine(drivetrain.calculatedMotorPowersToString(powers));
-        telemetry.addLine(launcher.getFlywheelsVelocity(bot.flyWheels));
-        telemetry.addLine(transfer.gatestateToString(transfer.getGateState(bot.Gate)));
-        telemetry.addData("transfer motor power", transfer.getTransferPower(bot.Transfer));
-        telemetry.addData("intake motor power", intake.getIntakePower(bot.Intake));
+        telemetry.addLine(launcher.getFlywheelsVelocity());
+        telemetry.addLine(transfer.gatestateToString(transfer.getGateState()));
+        telemetry.addData("transfer motor power", transfer.getTransferPower());
+        telemetry.addData("intake motor power", intake.getIntakePower());
 
         telemetry.addData("\ny", y);
         telemetry.addData("x", x);
