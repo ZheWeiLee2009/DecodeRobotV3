@@ -24,10 +24,10 @@ public class blueTwoGateAuto extends LinearOpMode {
     private Follower follower;
 
     RobotHardware bot;
-    DriveSubsystem drivetrain = new DriveSubsystem(bot.driveMotors);
-    LauncherSubsystem launcher = new LauncherSubsystem(bot.flyWheels);
-    TransferSubsystem transfer = new TransferSubsystem(bot.Transfer, bot.Gate);
-    IntakeSubsystem intake = new IntakeSubsystem(bot.Intake);
+    DriveSubsystem drivetrain;
+    LauncherSubsystem launcher;
+    TransferSubsystem transfer;
+    IntakeSubsystem intake;
 
 
     private double shootingVal = autoHalfShootingVelocity;
@@ -36,6 +36,10 @@ public class blueTwoGateAuto extends LinearOpMode {
     public void runOpMode(){
         bot = new RobotHardware(hardwareMap, new ElapsedTime());
 
+        drivetrain = new DriveSubsystem(bot.driveMotors);
+        launcher = new LauncherSubsystem(bot.flyWheels);
+        transfer = new TransferSubsystem(bot.Transfer, bot.Gate);
+        intake = new IntakeSubsystem(bot.Intake);
 
         drivetrain.setMotorsMode(bot.driveMotors, DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         drivetrain.setMotorsMode(bot.Intake, DcMotor.RunMode.RUN_WITHOUT_ENCODER);

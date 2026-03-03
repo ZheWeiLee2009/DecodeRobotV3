@@ -24,10 +24,10 @@ import java.util.List;
 public class UniversalTeleOp extends OpMode{
 
     RobotHardware bot;
-    DriveSubsystem drivetrain = new DriveSubsystem(bot.driveMotors);
-    LauncherSubsystem launcher = new LauncherSubsystem(bot.flyWheels);
-    TransferSubsystem transfer = new TransferSubsystem(bot.Transfer, bot.Gate);
-    IntakeSubsystem intake = new IntakeSubsystem(bot.Intake);
+    DriveSubsystem drivetrain;
+    LauncherSubsystem launcher;
+    TransferSubsystem transfer;
+    IntakeSubsystem intake;
 
     private ElapsedTime opmodeTimer = new ElapsedTime();
 
@@ -36,6 +36,10 @@ public class UniversalTeleOp extends OpMode{
     @Override
     public void init(){
         bot = new RobotHardware(hardwareMap, opmodeTimer);
+        drivetrain = new DriveSubsystem(bot.driveMotors);
+        launcher = new LauncherSubsystem(bot.flyWheels);
+        transfer = new TransferSubsystem(bot.Transfer, bot.Gate);
+        intake = new IntakeSubsystem(bot.Intake);
 
         drivetrain.setMotorsMode(bot.driveMotors, DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         drivetrain.setMotorsMode(bot.Intake, DcMotor.RunMode.RUN_WITHOUT_ENCODER);
