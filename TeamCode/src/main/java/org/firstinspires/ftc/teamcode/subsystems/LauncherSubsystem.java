@@ -10,7 +10,7 @@ import java.util.List;
 public class LauncherSubsystem  extends SubsystemBase {
 
 
-    public static final double kP = 0.0058;
+    public static final double kP = 0.0048;
     public static final double kI = 0.0;
     public static final double kD = 0.000002;
     public static final double kF = 1.0 / 5400.0;
