@@ -74,7 +74,7 @@ public class UniversalTeleOp extends OpMode{
         // Directional Movements
         double y = -gamepad1.left_stick_y;
         double x = gamepad1.left_stick_x;
-        double rx = gamepad1.right_stick_x * .8; // Added multiplier for better contorl
+        double rx = gamepad1.right_stick_x * .85; // Added multiplier for better contorl
 
         double[] powers = drivetrain.calculateMotorPowers(y, x, rx);
         drivetrain.setDriveMotorPowers(powers, DriveSpeed);
@@ -101,13 +101,16 @@ public class UniversalTeleOp extends OpMode{
 
         switch (speeds) {
             case userHalf:
-                launcher.setFlywheelVelocityPID(userHalfShootingVelocity);
+                launcher.setFlywheelRPMPID(userHalfShootingVelocity);
+                launcher.setFlywheelVelocityPID();
                 break;
             case userCenter:
-                launcher.setFlywheelVelocityPID(userCenterShootingVelocity);
+                launcher.setFlywheelRPMPID(userCenterShootingVelocity);
+                launcher.setFlywheelVelocityPID();
                 break;
             case userFar:
-                launcher.setFlywheelVelocityPID(userFarShootingVelocity);
+                launcher.setFlywheelRPMPID(userFarShootingVelocity);
+                launcher.setFlywheelVelocityPID();
                 break;
             case off:
                 launcher.setFlywheelsPower(0);

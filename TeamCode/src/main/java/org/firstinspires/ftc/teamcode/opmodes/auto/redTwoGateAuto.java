@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode.opmodes.auto;
 import static org.firstinspires.ftc.teamcode.tuning.roboConstants.LauncherConstants.autoHalfShootingVelocity;
 import static org.firstinspires.ftc.teamcode.tuning.roboConstants.TransferConstants.allReleaseTimer;
 
-import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.pedropathing.follower.Follower;
 import com.pedropathing.geometry.Pose;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -12,16 +11,15 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.RobotHardware;
-import org.firstinspires.ftc.teamcode.commands.setFlywheelPIDOn;
-import org.firstinspires.ftc.teamcode.opmodes.auto.Paths.blueTwoGateAutoPaths;
+import org.firstinspires.ftc.teamcode.opmodes.auto.Paths.redTwoGateAutoPaths;
 import org.firstinspires.ftc.teamcode.subsystems.DriveSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.LauncherSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.TransferSubsystem;
 import org.firstinspires.ftc.teamcode.tuning.pedroPathing.Constants;
 
-@Autonomous(name = "blueCloseTwoGate", group = ".")
-public class blueTwoGateAuto extends LinearOpMode {
+@Autonomous(name = "redCloseTwoGate", group = ".")
+public class redTwoGateAuto extends LinearOpMode {
 
     private Follower follower;
 
@@ -64,19 +62,19 @@ public class blueTwoGateAuto extends LinearOpMode {
 
 
         follower = Constants.createFollower(hardwareMap);
-        follower.setStartingPose(new Pose(26, 127, Math.toRadians(144)));
+        follower.setStartingPose(new Pose(116.000, 127, Math.toRadians(36)));
 
-        blueTwoGateAutoPaths paths = new blueTwoGateAutoPaths(follower);
+        redTwoGateAutoPaths paths = new redTwoGateAutoPaths(follower);
 
         // Commands
-        setFlywheelPIDOn launcherRun = new setFlywheelPIDOn(launcher, shootingVal);
+//        setFlywheelPIDOn launcherRun = new setFlywheelPIDOn(launcher, shootingVal);
 
 //        drivetrain.enableBuckReads();
 
-        telemetry.addData("X", 26);
+        telemetry.addData("X", 116.000);
         telemetry.addData("Y", 127);
 
-        telemetry.addLine("Blue Auto Ready!");
+        telemetry.addLine("Red Auto Ready!");
         telemetry.update();
 
         waitForStart();

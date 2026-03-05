@@ -1,12 +1,13 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
+import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.controller.PIDFController;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 import java.util.List;
 
 
-public class LauncherSubsystem {
+public class LauncherSubsystem  extends SubsystemBase {
 
 
     public static final double kP = 0.0058;
@@ -112,9 +113,7 @@ public class LauncherSubsystem {
         }
     }
 
-    public void setFlywheelVelocityPID(double RPM) {
-        this.target = RPM;
-
+    public void setFlywheelVelocityPID() {
         controller.setPIDF(kP, kI, kD, kF);
 
         double currentRPM = getFlywheelsResultantVelocity();
@@ -125,6 +124,14 @@ public class LauncherSubsystem {
 
         setFlywheelsPower(output);
     }
+
+    public void setFlywheelRPMPID(double rpm) { target = rpm; }
+
+    public double getPIDErr() {
+        double error = Math.abs(getFlywheelsResultantVelocity() - target) / target;
+        return error * 100;
+    }
+
 
     /**
      * Sets flywheel Power
