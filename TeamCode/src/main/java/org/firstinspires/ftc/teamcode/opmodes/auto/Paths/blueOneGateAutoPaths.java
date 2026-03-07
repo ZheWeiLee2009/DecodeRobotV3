@@ -9,6 +9,7 @@ import com.pedropathing.paths.PathChain;
 public class blueOneGateAutoPaths {
 
     public PathChain preload;
+    public PathChain align1;
     public PathChain line1;
     public PathChain gateOpen1;
     public PathChain shoot1;
@@ -23,29 +24,39 @@ public class blueOneGateAutoPaths {
     public blueOneGateAutoPaths(Follower follower) {
         preload = follower.pathBuilder().addPath(
                         new BezierLine(
-                                new Pose(24.000, 128),
+                                new Pose(28.500, 135.000),
 
-                                new Pose(55.500, 88.000)
+                                new Pose(50.000, 90.000)
                         )
-                ).setLinearHeadingInterpolation(Math.toRadians(144), Math.toRadians(129))
+                ).setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(132))
+
+                .build();
+
+        align1 = follower.pathBuilder().addPath(
+                        new BezierLine(
+                                new Pose(50.000, 90.000),
+
+                                new Pose(48.000, 82.000)
+                        )
+                ).setLinearHeadingInterpolation(Math.toRadians(132), Math.toRadians(180))
 
                 .build();
 
         line1 = follower.pathBuilder().addPath(
-                        new BezierCurve(
-                                new Pose(55.500, 88.000),
-                                new Pose(45.435, 83.534),
-                                new Pose(17.737, 83.334)
+                        new BezierLine(
+                                new Pose(48.000, 82.000),
+
+                                new Pose(11.000, 82.000)
                         )
-                ).setTangentHeadingInterpolation()
+                ).setConstantHeadingInterpolation(Math.toRadians(180))
 
                 .build();
 
         gateOpen1 = follower.pathBuilder().addPath(
                         new BezierCurve(
-                                new Pose(17.737, 83.334),
-                                new Pose(32.606, 77.410),
-                                new Pose(13.693, 73.348)
+                                new Pose(11.000, 82.000),
+                                new Pose(27.000, 81.000),
+                                new Pose(11.600, 77.000)
                         )
                 ).setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(90))
 
@@ -53,29 +64,29 @@ public class blueOneGateAutoPaths {
 
         shoot1 = follower.pathBuilder().addPath(
                         new BezierLine(
-                                new Pose(13.693, 73.348),
+                                new Pose(11.600, 77.000),
 
-                                new Pose(55.500, 88.000)
+                                new Pose(50.000, 90.000)
                         )
-                ).setLinearHeadingInterpolation(Math.toRadians(90), Math.toRadians(129))
+                ).setLinearHeadingInterpolation(Math.toRadians(90), Math.toRadians(132))
 
                 .build();
 
         align2 = follower.pathBuilder().addPath(
                         new BezierLine(
-                                new Pose(55.500, 88.000),
+                                new Pose(50.000, 90.000),
 
-                                new Pose(46.500, 59.800)
+                                new Pose(48.000, 58.000)
                         )
-                ).setLinearHeadingInterpolation(Math.toRadians(129), Math.toRadians(180))
+                ).setLinearHeadingInterpolation(Math.toRadians(132), Math.toRadians(180))
 
                 .build();
 
         line2 = follower.pathBuilder().addPath(
                         new BezierLine(
-                                new Pose(46.500, 59.800),
+                                new Pose(48.000, 58.000),
 
-                                new Pose(10.000, 59.472)
+                                new Pose(3.800, 58.000)
                         )
                 ).setTangentHeadingInterpolation()
 
@@ -83,29 +94,29 @@ public class blueOneGateAutoPaths {
 
         shoot2 = follower.pathBuilder().addPath(
                         new BezierCurve(
-                                new Pose(10.000, 59.472),
-                                new Pose(46.500, 59.800),
-                                new Pose(55.500, 88.000)
+                                new Pose(3.800, 58.000),
+                                new Pose(48.000, 58.000),
+                                new Pose(50.000, 90.000)
                         )
-                ).setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(129))
+                ).setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(132))
 
                 .build();
 
         align3 = follower.pathBuilder().addPath(
                         new BezierLine(
-                                new Pose(55.500, 88.000),
+                                new Pose(50.000, 90.000),
 
-                                new Pose(43.551, 35.000)
+                                new Pose(48.000, 34.000)
                         )
-                ).setLinearHeadingInterpolation(Math.toRadians(129), Math.toRadians(180))
+                ).setLinearHeadingInterpolation(Math.toRadians(132), Math.toRadians(180))
 
                 .build();
 
         line3 = follower.pathBuilder().addPath(
                         new BezierLine(
-                                new Pose(43.551, 35.000),
+                                new Pose(48.000, 34.000),
 
-                                new Pose(10.000, 35.000)
+                                new Pose(3.800, 34.000)
                         )
                 ).setTangentHeadingInterpolation()
 
@@ -113,21 +124,21 @@ public class blueOneGateAutoPaths {
 
         shoot3 = follower.pathBuilder().addPath(
                         new BezierLine(
-                                new Pose(10.000, 35.000),
+                                new Pose(3.800, 34.000),
 
-                                new Pose(55.500, 88.000)
+                                new Pose(50.000, 90.000)
                         )
-                ).setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(129))
+                ).setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(132))
 
                 .build();
 
         leave = follower.pathBuilder().addPath(
                         new BezierLine(
-                                new Pose(55.500, 88.000),
+                                new Pose(50.000, 90.000),
 
-                                new Pose(22.980, 87.795)
+                                new Pose(18.000, 96.000)
                         )
-                ).setConstantHeadingInterpolation(Math.toRadians(129))
+                ).setTangentHeadingInterpolation()
 
                 .build();
     }

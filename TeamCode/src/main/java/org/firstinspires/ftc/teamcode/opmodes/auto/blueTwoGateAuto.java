@@ -64,7 +64,7 @@ public class blueTwoGateAuto extends LinearOpMode {
 
 
         follower = Constants.createFollower(hardwareMap);
-        follower.setStartingPose(new Pose(26, 127, Math.toRadians(144)));
+        follower.setStartingPose(new Pose(28.500, 135.000, Math.toRadians(180)));
 
         blueTwoGateAutoPaths paths = new blueTwoGateAutoPaths(follower);
 
@@ -73,8 +73,8 @@ public class blueTwoGateAuto extends LinearOpMode {
 
 //        drivetrain.enableBuckReads();
 
-        telemetry.addData("X", 26);
-        telemetry.addData("Y", 127);
+        telemetry.addData("X", 28.500);
+        telemetry.addData("Y", 135.000);
 
         telemetry.addLine("Blue Auto Ready!");
         telemetry.update();
@@ -89,16 +89,15 @@ public class blueTwoGateAuto extends LinearOpMode {
 
         try {
             idleAll();
-
             // P1
-//            sleep(1000); // waiting for flywheels PID
+            sleep(500); // waiting for flywheels PID
             follow(paths.preload);
             releaseALl();
 
             // C1
             idleAll();
-            follow(paths.align1);
             intakeAll();
+            follow(paths.align1);
             follow(paths.line1);
             idleAll();
             follow(paths.gateOpen1);
@@ -126,8 +125,6 @@ public class blueTwoGateAuto extends LinearOpMode {
 
             offAll();
             follow(paths.leave);
-
-            startPID();
 
         } finally {
             stopPID();

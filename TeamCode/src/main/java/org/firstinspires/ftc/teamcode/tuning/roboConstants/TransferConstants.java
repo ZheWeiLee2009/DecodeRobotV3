@@ -16,12 +16,12 @@ public class TransferConstants {
     public static double offPowerTransfer = 0.0;
 
     @Sorter(sort = 3)
-    public static double gateClosed = .5;
+    public static double gateClosed = .6;
 
     @Sorter(sort = 4)
     public static double gateOpen = .2;
 
     @Sorter(sort = 5)
-    public static long allReleaseTimer = 600; // ms
+    public static long allReleaseTimer = 800; // ms
 
 }

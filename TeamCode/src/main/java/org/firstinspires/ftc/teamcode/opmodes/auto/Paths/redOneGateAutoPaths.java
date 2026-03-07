@@ -4,10 +4,10 @@ import com.pedropathing.follower.Follower;
 import com.pedropathing.geometry.BezierCurve;
 import com.pedropathing.geometry.BezierLine;
 import com.pedropathing.geometry.Pose;
-import com.pedropathing.paths.Path;
 import com.pedropathing.paths.PathChain;
 
-public class    redTwoGateAutoPaths {
+public class redOneGateAutoPaths {
+
     public PathChain preload;
     public PathChain align1;
     public PathChain line1;
@@ -15,21 +15,20 @@ public class    redTwoGateAutoPaths {
     public PathChain shoot1;
     public PathChain align2;
     public PathChain line2;
-    public PathChain gateOpen2;
     public PathChain shoot2;
     public PathChain align3;
     public PathChain line3;
     public PathChain shoot3;
     public PathChain leave;
 
-    public redTwoGateAutoPaths(Follower follower) {
+    public redOneGateAutoPaths(Follower follower) {
         preload = follower.pathBuilder().addPath(
                         new BezierLine(
                                 new Pose(115.500, 135.000),
 
                                 new Pose(94.000, 90.000)
                         )
-                ).setLinearHeadingInterpolation(Math.toRadians(0.000), Math.toRadians(49.000))
+                ).setLinearHeadingInterpolation(Math.toRadians(0.000), Math.toRadians(48.000))
 
                 .build();
 
@@ -39,7 +38,7 @@ public class    redTwoGateAutoPaths {
 
                                 new Pose(96.000, 82.000)
                         )
-                ).setLinearHeadingInterpolation(Math.toRadians(49.000), Math.toRadians(0.000))
+                ).setLinearHeadingInterpolation(Math.toRadians(48.000), Math.toRadians(0.000))
 
                 .build();
 
@@ -69,7 +68,7 @@ public class    redTwoGateAutoPaths {
 
                                 new Pose(94.000, 90.000)
                         )
-                ).setLinearHeadingInterpolation(Math.toRadians(90.000), Math.toRadians(49.000))
+                ).setLinearHeadingInterpolation(Math.toRadians(90.000), Math.toRadians(48.000))
 
                 .build();
 
@@ -79,7 +78,7 @@ public class    redTwoGateAutoPaths {
 
                                 new Pose(96.000, 58.000)
                         )
-                ).setLinearHeadingInterpolation(Math.toRadians(49.000), Math.toRadians(0.000))
+                ).setLinearHeadingInterpolation(Math.toRadians(48.000), Math.toRadians(0.000))
 
                 .build();
 
@@ -93,23 +92,13 @@ public class    redTwoGateAutoPaths {
 
                 .build();
 
-        gateOpen2 = follower.pathBuilder().addPath(
+        shoot2 = follower.pathBuilder().addPath(
                         new BezierCurve(
                                 new Pose(140.200, 58.000),
                                 new Pose(96.000, 58.000),
-                                new Pose(132.400, 77.000)
-                        )
-                ).setLinearHeadingInterpolation(Math.toRadians(0.000), Math.toRadians(90.000))
-
-                .build();
-
-        shoot2 = follower.pathBuilder().addPath(
-                        new BezierLine(
-                                new Pose(132.400, 77.000),
-
                                 new Pose(94.000, 90.000)
                         )
-                ).setLinearHeadingInterpolation(Math.toRadians(90.000), Math.toRadians(49.000))
+                ).setLinearHeadingInterpolation(Math.toRadians(0.000), Math.toRadians(48.000))
 
                 .build();
 
@@ -119,7 +108,7 @@ public class    redTwoGateAutoPaths {
 
                                 new Pose(96.000, 34.000)
                         )
-                ).setLinearHeadingInterpolation(Math.toRadians(49.000), Math.toRadians(0.000))
+                ).setLinearHeadingInterpolation(Math.toRadians(48.000), Math.toRadians(0.000))
 
                 .build();
 
@@ -139,7 +128,7 @@ public class    redTwoGateAutoPaths {
 
                                 new Pose(94.000, 90.000)
                         )
-                ).setLinearHeadingInterpolation(Math.toRadians(0.000), Math.toRadians(49.000))
+                ).setLinearHeadingInterpolation(Math.toRadians(0.000), Math.toRadians(48.000))
 
                 .build();
 

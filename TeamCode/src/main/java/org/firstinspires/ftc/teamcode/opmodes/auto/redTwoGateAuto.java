@@ -62,7 +62,7 @@ public class redTwoGateAuto extends LinearOpMode {
 
 
         follower = Constants.createFollower(hardwareMap);
-        follower.setStartingPose(new Pose(116.000, 127, Math.toRadians(36)));
+        follower.setStartingPose(new Pose(115.500, 135.000, Math.toRadians(0)));
 
         redTwoGateAutoPaths paths = new redTwoGateAutoPaths(follower);
 
@@ -71,8 +71,8 @@ public class redTwoGateAuto extends LinearOpMode {
 
 //        drivetrain.enableBuckReads();
 
-        telemetry.addData("X", 116.000);
-        telemetry.addData("Y", 127);
+        telemetry.addData("X", 115.000);
+        telemetry.addData("Y", 135);
 
         telemetry.addLine("Red Auto Ready!");
         telemetry.update();

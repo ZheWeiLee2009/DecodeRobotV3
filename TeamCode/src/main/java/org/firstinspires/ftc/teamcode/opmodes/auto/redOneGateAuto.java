@@ -11,16 +11,15 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.RobotHardware;
-import org.firstinspires.ftc.teamcode.commands.setFlywheelPIDOn;
-import org.firstinspires.ftc.teamcode.opmodes.auto.Paths.blueOneGateAutoPaths;
+import org.firstinspires.ftc.teamcode.opmodes.auto.Paths.redOneGateAutoPaths;
 import org.firstinspires.ftc.teamcode.subsystems.DriveSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.LauncherSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.TransferSubsystem;
 import org.firstinspires.ftc.teamcode.tuning.pedroPathing.Constants;
 
-@Autonomous(name = "blueCloseOneGate", group = ".")
-public class blueOneGateAuto extends LinearOpMode {
+@Autonomous(name = "redCloseOneGate", group = ".")
+public class redOneGateAuto extends LinearOpMode {
 
     private Follower follower;
 
@@ -61,19 +60,19 @@ public class blueOneGateAuto extends LinearOpMode {
 
 
         follower = Constants.createFollower(hardwareMap);
-        follower.setStartingPose(new Pose(28.500, 135.000, Math.toRadians(180)));
+        follower.setStartingPose(new Pose(115.500, 135.000, Math.toRadians(0)));
 
-        blueOneGateAutoPaths paths = new blueOneGateAutoPaths(follower);
+        redOneGateAutoPaths paths = new redOneGateAutoPaths(follower);
 
         // Commands
 //        setFlywheelPIDOn launcherRun = new setFlywheelPIDOn(launcher, shootingVal);
 
 //        drivetrain.enableBuckReads();
 
-        telemetry.addData("X", 28.5);
+        telemetry.addData("X", 115);
         telemetry.addData("Y", 135);
 
-        telemetry.addLine("Blue Auto Ready!");
+        telemetry.addLine("Red Auto Ready!");
         telemetry.update();
 
         waitForStart();
@@ -98,6 +97,7 @@ public class blueOneGateAuto extends LinearOpMode {
 //            telemetry.update();
 //
 //            sleep(30000);
+
             // C1
             idleAll();
             intakeAll();
