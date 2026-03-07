@@ -5,6 +5,7 @@ import static org.firstinspires.ftc.teamcode.tuning.roboConstants.LauncherConsta
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.pedropathing.follower.Follower;
 import com.pedropathing.geometry.Pose;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -19,6 +20,7 @@ import org.firstinspires.ftc.teamcode.subsystems.LauncherSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.TransferSubsystem;
 import org.firstinspires.ftc.teamcode.tuning.pedroPathing.Constants;
 
+@Disabled
 @TeleOp(name = "CommandSysTest", group = "tuning")
 public class commandSysTest extends LinearOpMode {
 

@@ -18,7 +18,7 @@ public class LauncherSubsystem  extends SubsystemBase {
     private List<DcMotorEx> flywheelMotors;
     private PIDFController controller = new PIDFController(kP, kI, kD, kF);
 
-    private static double target = 0;
+    private static volatile double target = 0;
 
     public enum speeds {
         userHalf,

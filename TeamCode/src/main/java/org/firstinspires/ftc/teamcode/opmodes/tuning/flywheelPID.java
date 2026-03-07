@@ -22,7 +22,7 @@ import org.firstinspires.ftc.teamcode.subsystems.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.LauncherSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.TransferSubsystem;
 
-//@Disabled
+@Disabled
 @Config
 @TeleOp(name = "Flywheel PID tuning", group = "tuning")
 public class flywheelPID extends OpMode {
