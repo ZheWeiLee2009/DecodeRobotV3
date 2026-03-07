@@ -7,7 +7,7 @@ import com.bylazar.configurables.annotations.Sorter;
 public class DriveConstants {
 
     @Sorter(sort = 0)
-    public static double DriveSpeed = 0.95;
+    public static double DriveSpeed = 1.0;
 
     @Sorter(sort = 1)
     public static double FL_Offset = 1;
