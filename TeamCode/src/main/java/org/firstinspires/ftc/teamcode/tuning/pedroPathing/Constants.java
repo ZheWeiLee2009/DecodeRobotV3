@@ -21,15 +21,15 @@ public class Constants {
 
     public static FollowerConstants followerConstants = new FollowerConstants()
             .mass(11.97)
-            .forwardZeroPowerAcceleration(-35.036)
-            .lateralZeroPowerAcceleration(-62.250)
+            .forwardZeroPowerAcceleration(-32.1)
+            .lateralZeroPowerAcceleration(-58.5)
             .useSecondaryTranslationalPIDF(false)
             .useSecondaryHeadingPIDF(false)
             .useSecondaryDrivePIDF(false)
-            .translationalPIDFCoefficients(new PIDFCoefficients(0.042, 0, 0.005, 0.021))
-            .headingPIDFCoefficients(new PIDFCoefficients(0.7,0,0.0008,0.023))
-            .drivePIDFCoefficients(new FilteredPIDFCoefficients(0.00545,0, 0.0001, 0.6, 0.001))
-            .centripetalScaling(0.00018)
+            .translationalPIDFCoefficients(new PIDFCoefficients(0.049, 0, 0.002, 0.021))
+            .headingPIDFCoefficients(new PIDFCoefficients(0.7,0,0.0007,0.023))
+            .drivePIDFCoefficients(new FilteredPIDFCoefficients(0.00745,0, 0.0001, 0.6, 0.001))
+            .centripetalScaling(0.00026)
 
 //            .translationalPIDFCoefficients(new PIDFCoefficients(0.09, 0, 0.008, .021))
 ////            .secondaryTranslationalPIDFCoefficients(new PIDFCoefficients(0.055,0,0.004,0.02))
@@ -44,7 +44,7 @@ public class Constants {
             ;
 
     public static MecanumConstants driveConstants = new MecanumConstants()
-            .maxPower(0.7)
+            .maxPower(1.0)
             .rightFrontMotorName("FR")
             .rightRearMotorName("BR")
             .leftRearMotorName("BL")
@@ -53,8 +53,8 @@ public class Constants {
             .leftRearMotorDirection(DcMotorEx.Direction.REVERSE)
             .rightFrontMotorDirection(DcMotorEx.Direction.FORWARD)
             .rightRearMotorDirection(DcMotorEx.Direction.FORWARD)
-            .xVelocity(62.09)
-            .yVelocity(49.64)
+            .xVelocity(79.8)
+            .yVelocity(66.5)
             ;
 
 

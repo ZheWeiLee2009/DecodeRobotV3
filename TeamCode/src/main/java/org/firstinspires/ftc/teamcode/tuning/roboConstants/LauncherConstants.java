@@ -11,7 +11,7 @@ public class LauncherConstants {
     public static double userFarShootingVelocity = 4000;
 
     @Sorter(sort = 0)
-    public static double userCenterShootingVelocity = 3350;
+    public static double userCenterShootingVelocity = 3290;
 
     @Sorter(sort = 0)
     public static double userHalfShootingVelocity= 2800;
