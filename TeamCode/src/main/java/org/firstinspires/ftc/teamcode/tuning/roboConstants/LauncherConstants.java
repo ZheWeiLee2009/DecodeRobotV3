@@ -22,7 +22,7 @@ public class LauncherConstants {
     public static double autoFarShootingVelocity = 3800 ;
 
     @Sorter(sort = 1)
-    public static double autoCenterShootingVelocity = 3350;
+    public static double autoCenterShootingVelocity = 3050;
 
     @Sorter(sort = 1)
     public static double autoHalfShootingVelocity = 2900;
