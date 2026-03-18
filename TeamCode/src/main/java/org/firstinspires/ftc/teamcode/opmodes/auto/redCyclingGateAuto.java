@@ -89,10 +89,11 @@ public class redCyclingGateAuto extends LinearOpMode {
             follow(paths.shoot2);
             releaseALl();  //6
 
-            for (int i = 0; i < 3; i ++ ) {
+            for (int i = 0; i < 2; i ++ ) {
                 intakeAll();
                 follow(paths.gatecycle);
-                sleep(3000);
+                follow(paths.gategrab);
+                sleep(2000);
                 idleAll();
                 follow(paths.gateshoot);
                 releaseALl(); // 6 + i*3
@@ -100,6 +101,7 @@ public class redCyclingGateAuto extends LinearOpMode {
 
             intakeAll();
             follow(paths.line1);
+            sleep(200);
             idleAll();
             follow(paths.shoot1);
             releaseALl(); // 6 + i*3 + 3

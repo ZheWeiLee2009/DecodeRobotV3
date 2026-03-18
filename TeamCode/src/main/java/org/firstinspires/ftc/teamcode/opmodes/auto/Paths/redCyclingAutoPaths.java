@@ -11,6 +11,7 @@ public class redCyclingAutoPaths {
     public PathChain line2;
     public PathChain shoot2;
     public PathChain gatecycle;
+    public PathChain gategrab;
     public PathChain gateshoot;
     public PathChain line1;
     public PathChain shoot1;
@@ -23,15 +24,15 @@ public class redCyclingAutoPaths {
 
                                 new Pose(89.000, 86.000)
                         )
-                ).setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(50))
+                ).setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(47.5))
 
                 .build();
 
         line2 = follower.pathBuilder().addPath(
                         new BezierCurve(
                                 new Pose(89.000, 86.000),
-                                new Pose(90.000, 55.000),
-                                new Pose(130.000, 59.000)
+                                new Pose(89.656, 57.325),
+                                new Pose(134.815, 59.000)
                         )
                 ).setTangentHeadingInterpolation()
 
@@ -39,41 +40,61 @@ public class redCyclingAutoPaths {
 
         shoot2 = follower.pathBuilder().addPath(
                         new BezierCurve(
-                                new Pose(130.000, 59.000),
-                                new Pose(96.654, 73.630),
+                                new Pose(134.815, 59.000),
+                                new Pose(90.004, 74.088),
                                 new Pose(89.000, 86.000)
                         )
-                ).setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(50))
+                ).setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(47.5))
 
                 .build();
 
         gatecycle = follower.pathBuilder().addPath(
                         new BezierCurve(
                                 new Pose(89.000, 86.000),
-                                new Pose(98.307, 71.439),
-                                new Pose(134.672, 59.689)
+                                new Pose(97.849, 71.897),
+                                new Pose(136.000, 61.800)
                         )
-                ).setLinearHeadingInterpolation(Math.toRadians(50), Math.toRadians(39))
+                ).setLinearHeadingInterpolation(Math.toRadians(47.5), Math.toRadians(39))
+
+                .build();
+
+        gategrab = follower.pathBuilder().addPath(
+                        new BezierLine(
+                                new Pose(136.000, 61.800),
+
+                                new Pose(134.308, 54.000)
+                        )
+                ).setLinearHeadingInterpolation(Math.toRadians(39), Math.toRadians(58))
 
                 .build();
 
         gateshoot = follower.pathBuilder().addPath(
                         new BezierCurve(
-                                new Pose(134.672, 59.689),
-                                new Pose(97.962, 72.094),
+                                new Pose(134.308, 54.000),
+                                new Pose(97.504, 72.094),
                                 new Pose(89.000, 86.000)
                         )
-                ).setLinearHeadingInterpolation(Math.toRadians(39), Math.toRadians(50))
+                ).setLinearHeadingInterpolation(Math.toRadians(58), Math.toRadians(47.5))
 
                 .build();
 
         line1 = follower.pathBuilder().addPath(
                         new BezierCurve(
                                 new Pose(89.000, 86.000),
-                                new Pose(100.022, 83.352),
-                                new Pose(127.782, 83.222)
+                                new Pose(98.646, 82.893),
+                                new Pose(130.500, 83.451)
                         )
                 ).setTangentHeadingInterpolation()
+
+                .build();
+
+        shoot1 = follower.pathBuilder().addPath(
+                        new BezierLine(
+                                new Pose(130.500, 83.451),
+
+                                new Pose(89.000, 86.000)
+                        )
+                ).setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(47.5))
 
                 .build();
 
@@ -83,15 +104,8 @@ public class redCyclingAutoPaths {
 
                                 new Pose(128.126, 85.771)
                         )
-                ).setLinearHeadingInterpolation(Math.toRadians(50), Math.toRadians(0))
+                ).setLinearHeadingInterpolation(Math.toRadians(47.5), Math.toRadians(0))
 
                 .build();
     }
 }
-
-
-
-
-
-
-
