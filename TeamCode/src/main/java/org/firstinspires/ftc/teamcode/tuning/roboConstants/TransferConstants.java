@@ -22,6 +22,6 @@ public class TransferConstants {
     public static double gateOpen = .2;
 
     @Sorter(sort = 5)
-    public static long allReleaseTimer = 800; // ms
+    public static long allReleaseTimer = 900; // ms
 
 }

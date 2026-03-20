@@ -44,25 +44,25 @@ public class redCyclingAutoPaths {
                                 new Pose(90.004, 74.088),
                                 new Pose(89.000, 86.000)
                         )
-                ).setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(47.5))
-
+                ).setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(45.5))
+                .setTimeoutConstraint(300)
                 .build();
 
         gatecycle = follower.pathBuilder().addPath(
                         new BezierCurve(
                                 new Pose(89.000, 86.000),
                                 new Pose(97.849, 71.897),
-                                new Pose(136.000, 61.800)
+                                new Pose(136.400, 61.600)
                         )
-                ).setLinearHeadingInterpolation(Math.toRadians(47.5), Math.toRadians(39))
+                ).setLinearHeadingInterpolation(Math.toRadians(45.5), Math.toRadians(39))
 
                 .build();
 
         gategrab = follower.pathBuilder().addPath(
                         new BezierLine(
-                                new Pose(136.000, 61.800),
+                                new Pose(136.400, 61.600),
 
-                                new Pose(134.308, 54.000)
+                                new Pose(137.500, 54.000)
                         )
                 ).setLinearHeadingInterpolation(Math.toRadians(39), Math.toRadians(58))
 
@@ -70,12 +70,12 @@ public class redCyclingAutoPaths {
 
         gateshoot = follower.pathBuilder().addPath(
                         new BezierCurve(
-                                new Pose(134.308, 54.000),
+                                new Pose(137.500, 54.000),
                                 new Pose(97.504, 72.094),
                                 new Pose(89.000, 86.000)
                         )
                 ).setLinearHeadingInterpolation(Math.toRadians(58), Math.toRadians(47.5))
-
+                .setTimeoutConstraint(300)
                 .build();
 
         line1 = follower.pathBuilder().addPath(
@@ -95,7 +95,7 @@ public class redCyclingAutoPaths {
                                 new Pose(89.000, 86.000)
                         )
                 ).setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(47.5))
-
+                .setTimeoutConstraint(300)
                 .build();
 
         leave = follower.pathBuilder().addPath(

@@ -11,15 +11,15 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.RobotHardware;
-import org.firstinspires.ftc.teamcode.opmodes.auto.Paths.redCyclingAutoPaths;
+import org.firstinspires.ftc.teamcode.opmodes.auto.Paths.blueCyclingAutoPaths;
 import org.firstinspires.ftc.teamcode.subsystems.DriveSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.LauncherSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.TransferSubsystem;
 import org.firstinspires.ftc.teamcode.tuning.pedroPathing.Constants;
 
-@Autonomous(name = "redCyclingGateAuto", group = ".")
-public class redCyclingGateAuto extends LinearOpMode {
+@Autonomous(name = "blueCyclingGateAuto", group = ".")
+public class blueCyclingGateAuto extends LinearOpMode {
 
     private Follower follower;
 
@@ -60,14 +60,14 @@ public class redCyclingGateAuto extends LinearOpMode {
 
 
         follower = Constants.createFollower(hardwareMap);
-        follower.setStartingPose(new Pose(115.500, 135.000, Math.toRadians(0)));
+        follower.setStartingPose(new Pose(28.500, 135.000, Math.toRadians(180)));
 
-        redCyclingAutoPaths paths = new redCyclingAutoPaths(follower);
+        blueCyclingAutoPaths paths = new blueCyclingAutoPaths(follower);
 
-        telemetry.addData("X", 115.500);
+        telemetry.addData("X", 28.500);
         telemetry.addData("Y", 135);
 
-        telemetry.addLine("Red Auto Ready!");
+        telemetry.addLine("Blue Auto Ready!");
         telemetry.update();
 
         waitForStart();
@@ -110,7 +110,7 @@ public class redCyclingGateAuto extends LinearOpMode {
             offAll();
             follow(paths.leave);
 
-            telemetry.addLine("Red Auto Finished!");
+            telemetry.addLine("Blue Auto Finished!");
             telemetry.update();
 
 
